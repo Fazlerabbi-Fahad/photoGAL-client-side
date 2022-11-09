@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
+    const { logIn, signInWithGoogle } = useContext(AuthContext)
 
     const handleLoginForm = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        const confirmPassword = form.confirmPassword.value;
+
+        if (password !== confirmPassword) {
+            alert('Password not matched')
+        }
+        else {
+            logIn(email, password)
+                .then(result => {
+                    const user = result.user;
+                    form.reset();
+                    alert('Successfully loged in')
+                })
+                .catch(error => console.log(error))
+        }
+
+
     }
 
     return (
@@ -37,10 +54,17 @@ const Login = () => {
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
 
                         </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Confirm Password</span>
+                            </label>
+                            <input type="password" name='confirmPassword' placeholder="confirm password" className="input input-bordered" required />
+
+                        </div>
                         <div className="form-control mt-6">
                             <button className='btn btn-primary' type="submit">Login</button>
                             <div className="form-control mt-6">
-                                <button className='btn btn-primary top-0'><FaGoogle className='mx-2' />Login with google</button>
+                                <button className='btn btn-primary top-0' onClick={signInWithGoogle}><FaGoogle className='mx-2' />Login with google</button>
                                 <p>New here? <Link className='text-red-400' to='/signup'>Join us</Link></p>
                             </div>
                         </div>
