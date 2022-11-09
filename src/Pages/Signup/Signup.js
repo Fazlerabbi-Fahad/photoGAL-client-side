@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
+
 
 
 const Signup = () => {
@@ -26,9 +28,10 @@ const Signup = () => {
                     const user = result.user;
                     handleUserProfile(name)
                     form.reset();
-                    alert('Successfully loged in')
+                    toast.success('Successful created!');
+
                 })
-                .catch(error => console.log(error))
+                .catch(error => { toast.error(error.message) })
         }
 
     }
@@ -83,14 +86,12 @@ const Signup = () => {
                                 <input type="password" name='confirmPassword' placeholder="confirm password" className="input input-bordered" required />
 
                             </div>
-                            <div className="form-control mt-6">
-                                <button className='btn btn-primary' type="submit">Sign Up</button>
-                                <div className="form-control mt-6">
-                                    <button className='btn btn-primary top-0' onClick={signInWithGoogle}><FaGoogle className='mx-2' />Sign up with google</button>
-                                    <p>Already have an account? <Link className='text-red-400' to='/login'>Login now</Link></p>
-                                </div>
-                            </div>
+
                         </form>
+                        <div className="form-control mb-6">
+                            <button className='btn btn-primary top-0 ml-8 mt-0' style={{ width: '320px' }} onClick={signInWithGoogle}><FaGoogle className='mx-2' />Login with google</button>
+                            <p className='ml-10'>Already have an account? <Link className='text-red-400' to='/login'>Login now</Link></p>
+                        </div>
                     </div>
                 </div>
             </div >

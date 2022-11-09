@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import img2 from '../../assets/Banner/img2.jpg';
 import img3 from '../../assets/Images/img3.jpg';
 import Login from '../Login/Login';
-
+import Service from '../Services/Service';
 const Home = () => {
+    const services = useLoaderData();
+    const servicesLimited = services.limitedServices;
     return (
         <div>
             <div>
@@ -18,7 +20,6 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div>services</div>
                 <div className="hero min-h-screen bg-base-200">
                     <div className="hero-content flex-col lg:flex-row">
                         <img alt='' src={img3} className="max-w-sm rounded-lg shadow-2xl" />
@@ -29,6 +30,29 @@ const Home = () => {
                                 <span> My style is a combination between photojournalism and fine-art photography with a touch of fashion and creative lighting. My photos are inspired by light, color, techniques from black & white processing, vintage photos, creative perspective, and of course, most importantly, the personalities of the people I photograph!</span> </p>
                         </div>
                     </div>
+                </div>
+                <div className='my-10'>
+                    <div>
+
+                        <div className='text-center mt-10 text-red-500'>
+                            <h1 className="text-5xl font-bold">Services</h1>
+                            <p className="mb-5">Welcome to the services page. Buy any service you want.</p>
+                        </div>
+
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                        {
+                            servicesLimited.map(service => <Service
+                                key={service._id}
+                                service={service}
+                            ></Service>)
+                        }
+                    </div>
+
+                    <div className='text-center mb-20'>
+                        <Link to='/services'><button className="btn glass text-red-400">Visit All</button></Link>
+                    </div>
+
                 </div>
                 <div>
                     <Login></Login>

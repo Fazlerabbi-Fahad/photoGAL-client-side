@@ -2,37 +2,33 @@ import React, { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
+
 
 const Login = () => {
-    const { logIn, signInWithGoogle } = useContext(AuthContext)
+    const { logIn, signInWithGoogle, setLoading } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/home';
 
     const handleLoginForm = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        const confirmPassword = form.confirmPassword.value;
 
-        if (password !== confirmPassword) {
-            alert('Password not matched')
-        }
-        else {
-            logIn(email, password)
-                .then(result => {
-                    const user = result.user;
-                    form.reset();
-                    navigate(from, { replaced: true })
+        logIn(email, password)
+            .then(result => {
+                const user = result.user;
+                form.reset();
+                navigate(from, { replaced: true })
+                toast.success('Log in Successful!');
 
-                    alert('Successfully loged in')
-                })
-                .catch(error => console.log(error))
-        }
-
-
+            })
+            .catch(error => { toast.error(error.message) })
+            .finally(setLoading(false))
     }
+
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -45,7 +41,7 @@ const Login = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
-                    <form onSubmit={handleLoginForm} className="card-body">
+                    <form onSubmit={handleLoginForm} className="card-body mb-0">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -59,21 +55,19 @@ const Login = () => {
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
 
                         </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Confirm Password</span>
-                            </label>
-                            <input type="password" name='confirmPassword' placeholder="confirm password" className="input input-bordered" required />
-
-                        </div>
+                        {/* <label className="label">
+                            <Link className="label-text-alt link link-hover">Forgot password?</Link>
+                        </label> */}
                         <div className="form-control mt-6">
                             <button className='btn btn-primary' type="submit">Login</button>
-                            <div className="form-control mt-6">
-                                <button className='btn btn-primary top-0' onClick={signInWithGoogle}><FaGoogle className='mx-2' />Login with google</button>
-                                <p>New here? <Link className='text-red-400' to='/signup'>Join us</Link></p>
-                            </div>
+
                         </div>
+
                     </form>
+                    <div className="form-control mb-6">
+                        <button className='btn btn-primary top-0 ml-8 mt-0' style={{ width: '320px' }} onClick={signInWithGoogle}><FaGoogle className='mx-2' />Login with google</button>
+                        <p className='ml-10'>New here? <Link className='text-red-400' to='/signup'>Join us</Link></p>
+                    </div>
                 </div>
             </div>
         </div >

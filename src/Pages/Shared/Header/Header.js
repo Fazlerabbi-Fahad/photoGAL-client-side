@@ -6,8 +6,6 @@ import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
-    console.log(user?.photoURL);
-
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
