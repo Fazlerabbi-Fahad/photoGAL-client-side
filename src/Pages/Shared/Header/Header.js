@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from '../../../assets/Images/img1.jpg';
+import { AuthContext } from '../../../Context/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
+    console.log(user?.photoURL);
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/services'>Services</Link></li>
-        <li><Link to='./login'>Login</Link></li>
+
+        {user?.email ?
+            <>
+                <li><Link>My Services</Link></li>
+                <li><Link>My Reviews</Link></li>
+                <li><Link onClick={logOut} to='/'>Log Out</Link></li>
+                {
+                    user.photoURL ?
+                        <li><img alt='' src={user?.photoURL} roundedCircle className="h-20" /></li>
+                        :
+                        <li><FaUser roundedCircle className="h-20 rounded"></FaUser></li>
+                }
+            </>
+            :
+            <li><Link to='./login'>Login</Link></li>
+        }
+
     </>
 
     return (
