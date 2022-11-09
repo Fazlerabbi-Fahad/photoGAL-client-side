@@ -12,11 +12,11 @@ const Header = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/services'>Services</Link></li>
+        <li><Link to='/myservices'>My Services</Link></li>
+        <li><Link to='/myreviews'>My Reviews</Link></li>
 
         {user?.email ?
             <>
-                <li><Link>My Services</Link></li>
-                <li><Link>My Reviews</Link></li>
                 <li><Link onClick={logOut} to='/'>Log Out</Link></li>
                 {
                     user.photoURL ?

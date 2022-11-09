@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const { logIn, signInWithGoogle } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLoginForm = event => {
         event.preventDefault();
@@ -21,6 +24,8 @@ const Login = () => {
                 .then(result => {
                     const user = result.user;
                     form.reset();
+                    navigate(from, { replaced: true })
+
                     alert('Successfully loged in')
                 })
                 .catch(error => console.log(error))
