@@ -16,7 +16,7 @@ const Home = () => {
                         <div className="max-w-md">
                             <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
                             <p className="mb-5">This is Fazle Rabbi Fahad. I am a natural photographer,photo editor and photography consultant.Welcome to my website.I hope you will what desire. </p>
-                            <Link className="btn btn-primary">Get Started</Link>
+                            <Link className="btn btn-primary" to='/services'>Get Started</Link>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ const PrivateRoute = ({ children }) => {
 
     }
     else {
+
         return children;
     };
 

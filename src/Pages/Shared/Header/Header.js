@@ -18,7 +18,7 @@ const Header = () => {
                 <li><Link onClick={logOut} to='/'>Log Out</Link></li>
                 {
                     user.photoURL ?
-                        <li><img alt='' src={user?.photoURL} roundedCircle className="h-20" /></li>
+                        <li><img alt='' src={user?.photoURL} roundedCircle style={{ width: '20px' }} /></li>
                         :
                         <li><FaUser roundedCircle className="h-20 rounded"></FaUser></li>
                 }

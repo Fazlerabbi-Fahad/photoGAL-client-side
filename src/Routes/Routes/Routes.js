@@ -5,7 +5,7 @@ import Blog from "../../Pages/Blog/Blog";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import Services from "../../Pages/Services/Services/Services";
-import AddServices from "../../Pages/Addservices/AddServices";
+import AddServices from "../../Pages/Myservices/AddServices";
 import MyReviews from "../../Pages/My Reviews/MyReviews";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ServiceDetails from "../../Pages/Services/ServiceDetails";
