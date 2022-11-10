@@ -10,7 +10,7 @@ const Header = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/services'>Services</Link></li>
-        <li><Link to='/myservices'>My Services</Link></li>
+        <li><Link to='/addservices'>Add Services</Link></li>
         <li><Link to='/myreviews'>My Reviews</Link></li>
 
         {user?.email ?

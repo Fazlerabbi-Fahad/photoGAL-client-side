@@ -55,9 +55,6 @@ const Login = () => {
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
 
                         </div>
-                        {/* <label className="label">
-                            <Link className="label-text-alt link link-hover">Forgot password?</Link>
-                        </label> */}
                         <div className="form-control mt-6">
                             <button className='btn btn-primary' type="submit">Login</button>
 
