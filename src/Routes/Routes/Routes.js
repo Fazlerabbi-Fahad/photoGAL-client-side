@@ -18,7 +18,7 @@ const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/services/')
+                loader: () => fetch('https://photogal-server.vercel.app/services/')
             },
             {
                 path: '/home',
@@ -52,7 +52,7 @@ const routes = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://photogal-server.vercel.app/services/${params.id}`)
             }
         ]
     }

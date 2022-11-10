@@ -24,7 +24,7 @@ const Login = () => {
                 //     email: user.email
                 // }
                 form.reset();
-                // fetch('http://localhost:5000/jwt', {
+                // fetch('https://photogal-server.vercel.app/jwt', {
                 //     method: "POST",
                 //     headers: {
                 //         'content-type': 'application/json',

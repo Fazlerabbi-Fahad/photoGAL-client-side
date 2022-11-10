@@ -8,7 +8,7 @@ const MyReviews = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews',)
+        fetch('https://photogal-server.vercel.app/reviews',)
             // .then(res => {
             //     if (res.status === 401 || res.status === 403) {
             //         logOut();
@@ -23,7 +23,7 @@ const MyReviews = () => {
 
     const handleDeleteAll = (id) => {
 
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://photogal-server.vercel.app/reviews/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
